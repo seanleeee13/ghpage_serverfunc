@@ -102,3 +102,5 @@ async def update_parent_level_lists(new_data: dict[str, LevelListItem]):
     return {"success": True}
 
 handler = Mangum(app)
+
+# baam message: 따ᅡᅡᅡᅡᅡᄀ!(펑!!!) (슈퍼)(하이퍼)(초)(절대)(퓨즈가 끊겼다가 우주가 종말해서 절대영도로 내려가고 중력이 사라져서 다시 붙어도)(안)됨
