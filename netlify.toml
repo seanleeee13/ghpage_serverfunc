@@ -5,3 +5,9 @@
 [functions]
   node_bundler = "none"
   included_files = ["api/**"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/main/:splat"
+  status = 200
+  force = true
