@@ -29,8 +29,12 @@ class LevelListItem(BaseModel):
     name: str
     long_name: str
     levels: list[str]
-    parent: str | None
-    isparent: bool
+    parent: str
+
+class ParentLevelListItem(BaseModel):
+    name: str
+    long_name: str
+    childs: list[str]
 
 db_level: dict[str, LevelItem] = {
     "140644686": LevelItem(**{
@@ -55,8 +59,17 @@ db_level_list: dict[str, LevelListItem] = {
         "levels": [
             "140644686"
         ],
-        "parent": "FLL",
-        "isparent": bool
+        "parent": "FLL"
+    })
+}
+
+db_parent_level_list: dict[str, ParentLevelListItem] = {
+    "ULL": ParentLevelListItem(**{
+        "name": "FLL",
+        "long_name": "Friend Level List / 공식 레벨 순위",
+        "childs": [
+            "ULL"
+        ]
     })
 }
 
@@ -75,5 +88,14 @@ async def get_level_lists():
 
 @app.post("/api/lists")
 async def update_level_lists(new_data: dict[str, LevelListItem]):
+    db_level_list.update(new_data)
+    return {"success": True}
+
+@app.get("/api/lists/parents", response_model=dict[str, LevelItem])
+async def get_parent_level_lists():
+    return db_level_list
+
+@app.post("/api/lists/parents")
+async def update_parent_level_lists(new_data: dict[str, LevelListItem]):
     db_level_list.update(new_data)
     return {"success": True}
