@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from mangum import Mangum
 
 app = FastAPI()
 
@@ -99,3 +100,5 @@ async def get_parent_level_lists():
 async def update_parent_level_lists(new_data: dict[str, LevelListItem]):
     db_level_list.update(new_data)
     return {"success": True}
+
+handler = Mangum(app)
