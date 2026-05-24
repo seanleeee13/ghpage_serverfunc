@@ -38,7 +38,7 @@ db_level: dict[str, LevelItem] = {
         "level_name": "Subplex Final",
         "host": "이슬우",
         "publish": "이슬우",
-        "co_creaters": [],
+        "co_creators": [],
         "verifier": "이슬우",
         "progress": "Unknown",
         "description": "",
